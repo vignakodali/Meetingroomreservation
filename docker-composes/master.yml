@@ -1,0 +1,41 @@
+version: '3'
+
+networks:
+  front-tier:
+    external:
+      name: front-tier
+  internal:
+  
+volumes:
+  database:
+
+services:
+  webserver:
+    image: ${CI_REGISTRY_IMAGE}/web
+    restart: always
+    depends_on:
+      - database-meetingroom
+    networks:
+      - front-tier
+      - internal
+    environment:
+      - DEV=0
+      - DB_NAME=meetingroom
+      - DB_USER=root
+      - DB_PASS=caffeina
+      - DB_HOST=database-meetingroom
+      - VIRTUAL_HOST=${VIRTUAL_HOST}
+      - LETSENCRYPT_HOST=${VIRTUAL_HOST}
+      - LETSENCRYPT_EMAIL=${LETSENCRYPT_EMAIL}
+      - VIRTUAL_PORT=3001
+      - GCP_CREDENTIALS=${GCP_CREDENTIALS}
+      - GCP_TOKEN=${GCP_TOKEN}
+  database-meetingroom:
+    image: ${CI_REGISTRY_IMAGE}/db
+    environment:
+      - MYSQL_DATABASE=meetingroom
+      - MYSQL_ROOT_PASSWORD=caffeina
+    volumes:
+      - database:/var/lib/mysql
+    networks:
+      - internal

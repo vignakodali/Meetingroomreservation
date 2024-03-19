@@ -1,0 +1,36 @@
+{
+  "name": "meetingroom-app",
+  "version": "4.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "watch": "nodemon --ignore ./client index.js"
+  },
+  "author": "Flavio De Stefano <destefano.flavio@gmail.com>",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "debug": "~2.6.9",
+    "download-file": "^0.1.5",
+    "express": "~4.16.0",
+    "googleapis": "^43.0.0",
+    "mkdirp": "^0.5.1",
+    "moment": "^2.22.2",
+    "morgan": "^1.9.1",
+    "mysql": "^2.16.0",
+    "utils": "^0.3.1"
+  },
+  "language": "it",
+  "port": 3001,
+  "devDependencies": {
+    "@babel/preset-env": "^7.0.0-beta.51",
+    "babel-cli": "^6.26.0",
+    "babel-plugin-module-resolver": "^3.1.1",
+    "babel-plugin-transform-async-to-generator": "^6.24.1",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-es2015": "^6.24.1",
+    "nodemon": "^1.18.4"
+  }
+}

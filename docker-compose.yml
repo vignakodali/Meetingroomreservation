@@ -1,0 +1,29 @@
+version: '3'
+
+services:
+  webserver:
+    ports: 
+      - 80:3000
+      - 81:3001
+    environment:
+      - DEV=1
+      - DB_NAME=meetingroom
+      - DB_USER=root
+      - DB_PASS=caffeina
+      - DB_HOST=database-meetingroom
+      - GCP_CREDENTIALS=${GCP_CREDENTIALS}
+      - GCP_TOKEN=${GCP_TOKEN}
+    volumes:
+      - .:/app
+  
+  database-meetingroom:
+    ports:
+      - 3306:3306
+    environment:
+      - MYSQL_DATABASE=meetingroom
+      - MYSQL_ROOT_PASSWORD=caffeina
+    volumes:
+      - database:/var/lib/mysql
+
+volumes:
+  database:
